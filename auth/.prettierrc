@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "arrowParens": "always",
+  "parser": "typescript",
+  "bracketSpacing": true
+}
