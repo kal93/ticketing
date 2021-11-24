@@ -16,4 +16,4 @@ spec:
               service: # cluster ip service to reach out to
                 name: auth-srv
                 port:
-                  number: 9000
+                  number: 3000

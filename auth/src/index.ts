@@ -8,8 +8,10 @@ const app = express();
 app.use(json());
 
 app.get('/api/users/currentUser', (req, res) => {
-  res.status(200).send('Hi there');
+  res.status(200).send({
+    msg: 'Hi there',
+  });
 });
-app.listen(9000, () => {
-  log(chalk.bgGreenBright.black('Auth running on port 9000'));
+app.listen(3000, () => {
+  log(chalk.bgGreenBright.black('Auth running on port 3000'));
 });
