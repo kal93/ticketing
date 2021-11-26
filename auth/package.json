@@ -4,7 +4,8 @@
   "description": "Authentication app",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --poll src/index.ts"
+    "start": "ts-node-dev --poll src/index.ts",
+    "dev": "env-cmd -f ./dev-config/dev.env npm start"
   },
   "keywords": [],
   "author": "maaz",
@@ -23,5 +24,8 @@
     "mongoose": "^6.0.13",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

@@ -37,7 +37,7 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      'thisisme'
+      process.env.JWT_KEY! // ! tells typescript this env variable is defined. We added this check at the startup of app.
     );
     // Store it on session object in req
     req.session = { jwt: userJwt };
