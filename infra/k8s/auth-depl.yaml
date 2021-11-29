@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: johndoeups/auth
+          env: # see cmd kubectl create secret generic <SECRETE_NAME_HERE_FOR_K8> --from-literal=<KEY_NAME_HERE> = <SECRET_HERE>
+            - name: JWT_KEY # Provides a name for ENV variable for container. This name will be referred inside auth app.
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret # secret name in k8.
+                  key: JWT_KEY # key name of the actual key value pair of secret
 ---
 apiVersion: v1
 kind: Service
