@@ -27,16 +27,29 @@ interface UserDoc extends mongoose.Document {
   //   createdAt: string;
   //   updatedAt: string;
 }
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    // transform the object being returned.Like remove password before api response gets sent.
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id; // remap userId from _id to id to maintain consistency for UI. Difference services can have different DBs with different naming conventions for ids.
+        delete ret._id;
+        delete ret.password; // remove password
+        delete ret.__v; // remove version key
+      },
+    },
+  }
+);
 
 userSchema.pre('save', async function (done) {
   // "this" context here is the user doc. Cannot use arrow fn here.

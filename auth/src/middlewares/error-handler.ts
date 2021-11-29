@@ -3,6 +3,15 @@ import { CustomError } from '../errors/custom-error';
 
 const log = console.log;
 
+/**
+ * This is an error handling middleware. Express distinguishes between normal middleware and error handling one
+ * based on number of arguments. Error handling middleware has err as first argument.This is an error capturing middleware.
+ * @param err
+ * @param req
+ * @param res
+ * @param next
+ * @returns
+ */
 export const errorHandler = (
   err: Error,
   req: Request,
