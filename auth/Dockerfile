@@ -8,7 +8,7 @@ WORKDIR /usr/apps/ticketing/auth
 COPY ./package.json ./
 
 # Install deps
-RUN npm install
+RUN npm install --only=prod
 
 # copy rest of the app files
 COPY ./ ./
