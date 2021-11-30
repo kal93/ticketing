@@ -18,11 +18,17 @@ const app = express();
 // Express is aware by default of proxy connections. So make it trusted one.
 app.set('trust proxy', true);
 app.use(json());
+
+const ISDEV = process.env.NODE_ENV === 'dev';
+const ISTEST = process.env.NODE_ENV === 'test';
+
+const ISPROD = ISDEV || ISTEST ? false : true;
+
 app.use(
   cookieSession({
     // disable encryption as we'll be using JWT inside the cookie
     signed: false,
-    secure: false, // setting it to true only allows for https connections
+    secure: ISPROD, // setting it to true only allows for https connections.
   })
 );
 
