@@ -8,6 +8,22 @@
     "dev": "env-cmd -f ./dev-config/dev.env npm start",
     "test": "jest --watchAll --no-cache"
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv" :[
+      "./src/test/setup.ts"
+    ]
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "binary": { "version": "20.04" },
+      "platform": "linux",
+      "version": "latest",
+      "debug": "1",
+      "arch": "x64"
+    }
+  },
   "keywords": [],
   "author": "maaz",
   "license": "ISC",
