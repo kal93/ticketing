@@ -72,7 +72,10 @@ const doR = async () => {
 // };
 
 export const getServerSideProps = async (context) => {
-  console.log("I am on server. I run only on server and not browser.");
+  console.log(
+    "I am on server. I run only on server and not browser.",
+    "[index.js]"
+  );
   const response = await buildClient(context).get("/api/users/currentUser");
   return {
     props: {
