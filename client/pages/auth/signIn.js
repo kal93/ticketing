@@ -23,7 +23,7 @@ export const signIn = () => {
 
   return (
     <form onSubmit={onSubmitSignUp}>
-      <h1>Sign up</h1>
+      <h1>Sign In</h1>
       <div className="form-group">
         <label>Email Address</label>
         <input

@@ -13,8 +13,8 @@ const start = async () => {
     );
   }
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/auth');
-    // await mongoose.connect('mongodb://auth-mongo-srv:27017/auth'); // check cluster ip service for mongodb for url
+    // await mongoose.connect('mongodb://127.0.0.1:27017/auth');
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth'); // check cluster ip service for mongodb for url
     log('Connected to Mongo DB');
   } catch (error) {
     console.error(error);
