@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequestMiddleWare } from '../middlewares/validate-request';
+import { BadRequestError, validateRequestMiddleWare } from '@ticketjd/common';
 import { User } from '../models/user';
 import { PasswordService } from '../services/password';
 const log = console.log;

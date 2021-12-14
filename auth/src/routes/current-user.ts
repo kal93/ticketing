@@ -1,7 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { currentUserMiddleWare } from '../middlewares/current-user';
-import { requireAuthMiddleWare } from '../middlewares/require-auth';
+import { currentUserMiddleWare } from '@ticketjd/common';
+import { requireAuthMiddleWare } from '@ticketjd/common';
 
 const log = console.log;
 

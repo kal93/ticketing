@@ -2,8 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import { User, UserModel } from '../models/user';
-import { BadRequestError } from '../errors/bad-request-error';
-import { validateRequestMiddleWare } from '../middlewares/validate-request';
+import { BadRequestError, validateRequestMiddleWare } from '@ticketjd/common';
 
 const log = console.log;
 
