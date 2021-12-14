@@ -12,10 +12,15 @@ const start = async () => {
       'Env variable JWT_KEY must be defined.Verify depl yaml files and k8 secrets.'
     );
   }
+  if (!process.env.MONGO_URI) {
+    throw new Error(
+      'Env variable JWT_KEY must be defined.Verify depl yaml files and k8 secrets.'
+    );
+  }
   try {
     // await mongoose.connect('mongodb://127.0.0.1:27017/auth');
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth'); // check cluster ip service for mongodb for url
-    log('Connected to Mongo DB');
+    log('Connected to auth Mongo DB...', process.env.MONGO_URI);
   } catch (error) {
     console.error(error);
   }
