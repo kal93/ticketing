@@ -17,6 +17,13 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+          - path: /api/tickets/?(.*)
+            pathType: Prefix
+            backend:
+              service: # cluster ip service to reach out to
+                name: tickets-srv
+                port:
+                  number: 3000
           - path: /?(.*) # This is a catch all regex. This must alway be at the very bottom.
             pathType: Prefix
             backend:
