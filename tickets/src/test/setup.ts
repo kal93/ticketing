@@ -1,18 +1,18 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
-import request from 'supertest';
-import { app } from '../app';
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
+import request from "supertest";
+import { app } from "../app";
 
 declare global {
-  var signIn: () => Promise<string[]>;
+  var signIn: () => string[];
 }
 
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = 'thisisme';
+  process.env.JWT_KEY = "thisisme";
   mongo = await MongoMemoryServer.create();
-  const mongoUri = mongo.getUri();
-  console.log(mongoUri, '<<<<<');
+  const mongoUri = mongo.getUri(); // url on localhost with random port
   await mongoose.connect(mongoUri);
 });
 
@@ -29,18 +29,19 @@ afterAll(async () => {
   await mongo.stop();
 });
 
-global.signIn = async () => {
-  const email = 'test@test.com';
-  const password = 'password';
-
-  const response = await request(app)
-    .post('/api/users/signUp')
-    .send({
-      email,
-      password,
-    })
-    .expect(201);
-
-  const cookie = response.get('Set-Cookie');
-  return cookie;
+global.signIn = () => {
+  // build a jwt payload
+  const payLoad = {
+    id: "1234",
+    email: "test@test.com",
+  };
+  // create a jwt
+  const token = jwt.sign(payLoad, process.env.JWT_KEY!);
+  // build session object {jwt: jwt_val}
+  const session = { jwt: token };
+  // take the object and base64 encode it
+  const sessionJson = JSON.stringify(session);
+  const base64 = Buffer.from(sessionJson).toString("base64");
+  // return the base64 encoded string
+  return [`express:sess=${base64}`];
 };

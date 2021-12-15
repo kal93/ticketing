@@ -50,7 +50,7 @@
     "@types/supertest": "^2.0.11",
     "env-cmd": "^10.1.0",
     "jest": "^27.4.0",
-    "mongodb-memory-server": "^8.0.3",
+    "mongodb-memory-server": "^8.0.4",
     "supertest": "^6.1.6",
     "ts-jest": "^27.0.7"
   }

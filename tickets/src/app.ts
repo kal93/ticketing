@@ -4,7 +4,15 @@ import "express-async-errors";
 import cookieSession from "cookie-session";
 import chalk from "chalk";
 
-import { errorHandler, NotFoundError } from "@ticketjd/common";
+import {
+  errorHandler,
+  NotFoundError,
+  currentUserMiddleWare,
+} from "@ticketjd/common";
+
+import { createTicketRouter } from "./routes/new";
+import { showTicketRouter } from "./routes/show";
+import { indexTicketRouter } from "./routes";
 
 const log = console.log;
 
@@ -26,6 +34,10 @@ app.use(
     secure: ISPROD, // setting it to true only allows for https connections.
   })
 );
+app.use(currentUserMiddleWare);
+app.use(createTicketRouter);
+app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 app.all("*", async (req, res, next) => {
   throw new NotFoundError();

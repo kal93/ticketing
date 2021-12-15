@@ -25,7 +25,11 @@ const start = async () => {
     console.error(error);
   }
   app.listen(3000, () => {
-    log(chalk.bgGreenBright.bold.black("\t\n Auth running on port 3000 \n"));
+    log(
+      chalk.bgGreenBright.bold.black(
+        "\t\n Tickets service running on port 3000 \n"
+      )
+    );
   });
 };
 
